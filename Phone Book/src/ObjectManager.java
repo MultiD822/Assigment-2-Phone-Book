@@ -11,9 +11,9 @@ public class ObjectManager {
     NodeBook fristNode;
     NodeBook lastNode;
 
-    public void addNode(String data){
+    public void addNode(String firstName, String lastname, String address, String city, String phoneNumber){
         //This will call the NodeBook class so then we can start makeing methods for the node list 
-        NodeBook new_Node = new NodeBook(data);
+        NodeBook new_Node = new NodeBook(firstName, lastname, address, city, phoneNumber);
         //This will add a node to the front of the list 
         if(fristNode == null){
             fristNode = new_Node;
@@ -25,11 +25,11 @@ public class ObjectManager {
         }
     }
     //This Method will remove a node form the list, and then sti
-    public void removeNode(String data){
+    public void removeNode(String firstName, String lastname, String address, String city, String phoneNumber){
         NodeBook current = fristNode;
         NodeBook previous = null;
         while(current != null){
-            if(current.data == data){
+            if(current.firstName == firstName){
                 if(previous == null){
                 fristNode = current.next;
                 }else{
@@ -41,11 +41,12 @@ public class ObjectManager {
             current = current.next;
         } 
     }
-
+//This method will read what is in the node and the print it to the Terminal
     public void nodeReader(){
         NodeBook current = fristNode;
         while (current != null){
-            System.out.println(current.data + " ");
+            System.out.println("||" + current.firstName  + "||" + current.lastName  + "||" + current.address  + "||" + current.city + "||" + current.phoneNumber + "||");
+
             current = current.next;
         }
         System.out.println();

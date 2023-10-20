@@ -9,12 +9,23 @@ NodeBook.java
 
 public class NodeBook {
     //This class is just an object that is called PhoneBook, it holds the data and hold the constertor to then be called
-    String data;
+    
+    String firstName;
+    String lastName;
+    String address;
+    String city;
+    String phoneNumber;
     NodeBook next;
 
-    public NodeBook(String data){
-        this.data = data;
+    public NodeBook(String firstName, String lastname, String address, String city, String phoneNumber){
+        this.firstName = firstName;
+        this.lastName = lastname;
+        this.address = address;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
         this.next = null;
     }
+
+    
 
 }
