@@ -29,6 +29,7 @@ public class TestMain {
         System.out.println("This will ask for data to make a new node ");
         list.askForData();
         list.nodeReader();
+        
     }
 }
 

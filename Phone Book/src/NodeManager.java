@@ -11,10 +11,11 @@ import java.util.Scanner;
 
 public class NodeManager {
     //This class is meant for holding the methods for managing the PhoneBook class
-    NodeBook fristNode;
-    NodeBook lastNode;
-
-
+    private NodeBook fristNode;
+    private NodeBook lastNode;
+    int nodeIndex = 0;
+    
+    //This method is ment for grabing the data for makeing a new contact 
     public void askForData(){
         Scanner termianlScanner = new Scanner(System.in);
 
@@ -57,8 +58,10 @@ public class NodeManager {
             lastNode.next = new_Node;
             lastNode = new_Node;
         }
-
+        nodeIndex++;
     }
+
+//Need a method 
    
 //This method will count the amount of node that have been made and return a int value 
     public int getNode_Chain_Size(){
@@ -97,7 +100,7 @@ public class NodeManager {
     public void nodeReader(){
         NodeBook current = fristNode;
         while (current != null){
-            System.out.println("||" + current.getFirstName() + "||" + current.lastName  + "||" + current.address  + "||" + current.city + "||" + current.phoneNumber + "||");
+            System.out.println("||" + current.firstName + "||" + current.lastName  + "||" + current.address  + "||" + current.city + "||" + current.phoneNumber + "||");
 
             current = current.next;
         }
@@ -105,6 +108,8 @@ public class NodeManager {
     }
 
 //This next method will be for grabing for the index of a node in the chain
-
+    public int getNodeIndex(){
+        return nodeIndex;
+    }
     
 }
