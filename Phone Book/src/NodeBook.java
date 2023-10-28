@@ -1,7 +1,7 @@
 /*
 Programmer: Kai Schenkel
 Class CS 145
-Data 10/24/2023
+ Data 10/28/2023
 Assigment 2 PhoneBook
 Sources: This was from the book and from Class and pass labs
 NodeBook.java
@@ -12,25 +12,19 @@ public class NodeBook {
     
     //We need to find a way to have the data be set by a method insted of it being hard coded in to the program 
     protected String firstName, lastName, address, city, phoneNumber;
-    NodeBook next;
+    NodeBook nextNodeBook;
 
-    public NodeBook(String FirstName, String newLastname, String newAddress, String newCity, String newPhoneNumber){
-        
-        this.firstName = FirstName;
-        this.lastName = newLastname;
-        this.address = newAddress;
-        this.city = newCity;
-        this.phoneNumber = newPhoneNumber;
-        this.next = null;
+    public NodeBook(String object_1, String object_2, String object_3, String object_4, String object_5){
+        this(object_1, object_2, object_3 ,object_4, object_5, null);
     }
 
-    public NodeBook(NodeBook next, String firstName, String lastname, String address, String city, String phoneNumber){
-        this.firstName = firstName;
-        this.lastName = lastname;
-        this.address = address;
-        this.city = city;
-        this.phoneNumber = phoneNumber;
-        this.next = next;
+    public NodeBook(String object_1, String object_2, String object_3, String object_4, String object_5, NodeBook node){
+        firstName = object_1;
+        lastName = object_2;
+        address = object_3;
+        city = object_4;
+        phoneNumber = object_5;
+        nextNodeBook = node;
     }
     /*These next methods are for setting the data in the node*/
     public void setFirstName(String newFirstName){
@@ -74,6 +68,7 @@ public class NodeBook {
         return phoneNumber;
     }
 
+    NodeBook getNextNode(){return nextNodeBook;}
 
 
 }
