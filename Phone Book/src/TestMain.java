@@ -12,26 +12,16 @@ TestMain.java
 public class TestMain {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-        NodeManager list = new NodeManager();
+        NodeManager<String> list = new NodeManager<>();
+         list.insertNode_AtFront(0, "null", "null", "null", "null", "null");
+         list.insertNode_AtFront(1, "null", "null", "null", "null", "null");
+         list.insertNode_AtFront(2, "null", "null", "null", "null", "null");
+         list.insertNode_AtFront(3, "null", "null", "null", "null", "null");
+         list.insertNode_AtFront(4, "null", "null", "null", "null", "null");
 
-        list.addNode("Bob", "Grand","Green lane", "Blue Ville", "532-412-8795");
-        list.addNode("Sally", "Valley","Red rd", "Groud Town", "349-789-3495");
-        list.addNode("Jon", "Batter","Diamond St", "Mineal Vally", "265-024-0942");
+         list.insertNode_AtIndex(0, "Grant", "Stone", "6923 New Haven St", "Blood Moon", "123 456 7890");
 
-        System.out.println("Here are the names");
-        list.nodeReader();
-
-        list.removeNode("Jon", "Batter","Diamond St", "Mineal Vally", "265-024-0942");
-
-        System.out.println("Here is the list afer a remove");
-        list.nodeReader();
-
-        System.out.println("This is the amount of contact\t" + list.getNode_Chain_Size());
-        System.out.println(list.isNodeEmpty());
-
-        System.out.println("This will ask for data to make a new node ");
-        
-        list.nodeReader();
+         list.printChainOfNodes();
     }
 }
 

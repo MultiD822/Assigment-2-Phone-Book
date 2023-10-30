@@ -9,6 +9,13 @@
             "name": "TestMain",
             "request": "launch",
             "mainClass": "TestMain",
+            "projectName": "Assigment-2-Phone-Book_bdb19588"
+        },
+        {
+            "type": "java",
+            "name": "TestMain",
+            "request": "launch",
+            "mainClass": "TestMain",
             "projectName": "Assigment-2-Phone-Book_c49597a8"
         },
         {

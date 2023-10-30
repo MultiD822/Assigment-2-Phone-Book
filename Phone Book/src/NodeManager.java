@@ -7,99 +7,99 @@ Sources: This was from the book and from Class and pass labs
 NodeManager.java
 */
 
+import org.w3c.dom.Node;
 
-
-public class NodeManager {
+public class NodeManager<D> {
     //This class is meant for holding the methods for managing the PhoneBook class
-    private NodeBook firstNode;
-    private NodeBook lastNode;
-    String name;
-    int nodeIndex = 0;
+    private NodeBook<D> firstNode;
+    private NodeBook<D> lastNode;
+    private String name;
+    private int indexCounter;
     //
 
     //This Constructor create an epmty chain of node that can hold data its name is NodeChain
-    public NodeManager() {this("NodeChain");}
+    public NodeManager() {this("NodeChain");
+        indexCounter = 0;}
 
     //This Constructor is ment to call the first and last node to make an empty chain of nodes
     public NodeManager(String chainName) {
         name = chainName;
         firstNode = lastNode = null;
+        indexCounter = 0;
     }
 
-     /*
-     public void insertNode_AtFront(String insertData1){
-        if(isNodeEmpty()){
-            firstNode = lastNode = new NodeBook(insertData1);
+     //This method will add a node at a given index
+     public void insertNode_AtIndex(int nodeIndex, D object_1, D object_2, D object_3, D object_4, D object_5) {
+        if (nodeIndex > indexCounter) {
+            throw new IndexOutOfBoundsException();
         }
-        else {
-            firstNode = new NodeBook(insertData1, firstNode);
-        }
-    }*/
+        NodeBook<D> node = new NodeBook<D>(object_1, object_2, object_3, object_4, object_5, null, null);
+        if (indexCounter == 0) {
+            firstNode = lastNode = node;
+        } else {
+            if (nodeIndex == 0) {
+                node.nextNodeBook = firstNode;
+                firstNode.prevNodeBook = node;
+                firstNode = node;
+            } else if (nodeIndex == indexCounter) {
+                node.prevNodeBook = lastNode;
+                lastNode.nextNodeBook = node;
+                lastNode = node;
+            } else {
+                NodeBook<D> currentNode = this.firstNode;
 
-    public void addNode(String firstName, String lastname, String address, String city, String phoneNumber){
-        //This will call the NodeBook class so then we can start makeing methods for the node list 
-        NodeBook new_Node = new NodeBook(firstName, lastname, address, city, phoneNumber);
-        //This will add a node to the front of the list 
-        if(firstNode == null){
-            firstNode = new_Node;
-            lastNode = new_Node;
-        }else{
-            //This will add to the end of the node list 
-            lastNode.nextNodeBook = new_Node;
-            lastNode = new_Node;
-        }
-        nodeIndex++;
-    }
-
-//Need a method 
-   
-//This method will count the amount of node that have been made and return a int value 
-    public int getNode_Chain_Size(){
-        NodeBook currentNode = firstNode;
-        int nodeCount = 0;
-        while(currentNode != null){
-                currentNode = currentNode.nextNodeBook;
-                nodeCount++;
-        }
-        return nodeCount;
-    }
-//End of getNode_Chain_Size method
-
-    public boolean isNodeEmpty(){
-        return firstNode == null;
-    }
-
-    //This Method will remove a node form the Linked list, and then if need conet any node to together 
-    public void removeNode(String firstName, String lastname, String address, String city, String phoneNumber){
-        NodeBook current = firstNode;
-        NodeBook previous = null;
-        while(current != null){
-            if(current.firstName == firstName){
-                if(previous == null){
-                firstNode = current.nextNodeBook;
-                }else{
-                previous.nextNodeBook = current.nextNodeBook;
+                for (int i = 0; i < nodeIndex; i++) {
+                    if (currentNode == null){
+                        throw new IndexOutOfBoundsException("Invalid index");
+                    }
+                    currentNode = currentNode.nextNodeBook;
                 }
-                break;
+                node.nextNodeBook = currentNode;
+                node.prevNodeBook = currentNode.prevNodeBook;
+                currentNode.prevNodeBook.nextNodeBook = node;
+                currentNode.prevNodeBook = node;
             }
-            previous = current;
-            current = current.nextNodeBook;
-        } 
+        }
+        indexCounter++;
+        }
+    //Next method will be for just adding nodes to the fount of the chain of Nodes 
+    public void insertNode_AtFront (int indexCounter, D object_1, D object_2, D object_3, D object_4, D object_5) {
+        if (isChainEmpty()){
+            firstNode = lastNode = new NodeBook<D>(object_1, object_2, object_3, object_4, object_5, null, null);
+        } else {
+            NodeBook<D> newNode = new NodeBook<D>(object_1, object_2, object_3, object_4, object_5, firstNode, null);
+            firstNode.prevNodeBook = newNode;
+            firstNode = newNode;
+        }
+        indexCounter++;
     }
-//This method will read what is in the node and the print it to the Terminal
-    public void nodeReader(){
-        NodeBook current = firstNode;
-        while (current != null){
-            System.out.println("||" + current.firstName + "||" + current.lastName  + "||" + current.address  + "||" + current.city + "||" + current.phoneNumber + "||");
 
-            current = current.nextNodeBook;
+    //This method will be for printing the node from the chain and then printing the data from the node itself
+    public void printChainOfNodes() {
+        if (isChainEmpty()){
+            System.out.printf("Empty %s%n", name);
+            return;
+        }
+        System.out.println("The name of this chain is :\t" + name);
+        NodeBook<D> currentNode = firstNode;
+
+        while (currentNode != null) {
+            System.out.printf("First Name : %-5s \n", currentNode.firstName);
+            System.out.printf("Last Name : %-5s \n", currentNode.lastName);
+            System.out.printf("Address : %-5s \n", currentNode.address);
+            System.out.printf("City : %-5s \n", currentNode.city);
+            System.out.printf("PhoneNumber : %-5s \n", currentNode.phoneNumber);
+            currentNode = currentNode.nextNodeBook;
         }
         System.out.println();
     }
 
-//This next method will be for grabing for the index of a node in the chain
-    public int getNodeIndex(){
-        return nodeIndex;
-    }
-    
+
+
+
+
+
+
+    //This method checks if this chian of nodes is Empty or not 
+    public boolean isChainEmpty() {return firstNode == null;}
 }
