@@ -1,7 +1,7 @@
 /*
 Programmer: Kai Schenkel
 Class CS 145
-Data 10/28/2023
+Data 10/30/2023
 Assigment 2 PhoneBook
 Sources: This was from the book and from Class and pass labs
 NodeManager.java
@@ -29,7 +29,7 @@ public class NodeManager<D> {
     }
 
      //This method will add a node at a given index
-     public void insertNode_AtIndex(int nodeIndex, D object_1, D object_2, D object_3, D object_4, D object_5) {
+     public void insertNode_AtIndex(int nodeIndex, String object_1, String object_2, String object_3, String object_4, String object_5) {
         if (nodeIndex > indexCounter) {
             throw new IndexOutOfBoundsException();
         }
@@ -114,8 +114,49 @@ public class NodeManager<D> {
         String phoneNumberData = userInput_String5;
 
         phoneBook.insertNode_AtIndex(0,firstNameData,lastNameData,addressData,cityData,phoneNumberData);
-        termianlScanner.close();
+        
     }
+    /*This method is meant for editing a contact by passing the nodes index and then useing a for loop, 
+        to find the node and then use the set methods to edit the data*/
+    public void editNodeBook_AtIndex(NodeManager<D> list, int nodeIndex){
+        if (nodeIndex < 0 || nodeIndex >= list.indexCounter) {
+            throw new IndexOutOfBoundsException("Invalid Index");
+        }
+       Scanner termianlScanner = new Scanner(System.in);
+       
+       NodeBook<D> currentNodeBook = list.firstNode;
+
+       for (int i = 0; i < nodeIndex; i++) {
+            currentNodeBook = currentNodeBook.nextNodeBook;
+       }
+        System.out.println("Please edit the First name:");
+        String userInput_String1 = termianlScanner.nextLine();
+        String newFirstNameData = userInput_String1;
+        currentNodeBook.setFirstName(newFirstNameData);
+
+        System.out.println("Please edit the Last name:");
+        String userInput_String2 = termianlScanner.nextLine();
+        String newLastNameData = userInput_String2;
+        currentNodeBook.setLastName(newLastNameData);
+
+        System.out.println("Please edit the Address:");
+        String userInput_String3 = termianlScanner.nextLine();
+        String newAddressData = userInput_String3;
+        currentNodeBook.setAddress(newAddressData);
+
+        System.out.println("Please edit the City:");
+        String userInput_String4 = termianlScanner.nextLine();
+        String newCityData = userInput_String4;
+        currentNodeBook.setCity(newCityData);
+
+        System.out.println("Please edit the Phone Number:");
+        String userInput_String5 = termianlScanner.nextLine();
+        String newPhoneNumberData = userInput_String5;
+        currentNodeBook.setPhoneNumber(newPhoneNumberData);
+
+        
+    }
+    
     //This method will be for printing the node from the chain and then printing the data from the node itself
     public void printChainOfNodes() {
         if (isChainEmpty()){
@@ -146,4 +187,12 @@ public class NodeManager<D> {
     }
     //This method checks if this chian of nodes is Empty or not 
     public boolean isChainEmpty() {return firstNode == null;}
+
+    public int indexRequester(){
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.println("Please enter a Index");
+        int theIndex = inputScanner.nextInt();
+        inputScanner.close();
+        return theIndex;
+    }
 }
